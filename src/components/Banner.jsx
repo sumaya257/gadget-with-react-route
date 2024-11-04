@@ -3,7 +3,7 @@ import banner from '../assets/banner.jpg';
 import { Link } from 'react-router-dom';
 const Banner = () => {
     return (
-        <div className="relative">
+        <div className="relative mb-[-110px]">
             {/* Heading Div */}
             <div className="text-center h-[594px] bg-[#9538E2] text-white p-10 rounded-2xl border-2">
                 <h1 className="text-5xl font-bold my-8">Upgrade Your Tech Accessorize with <br />Gadget Heaven Accessories</h1>

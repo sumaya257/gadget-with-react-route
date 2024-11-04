@@ -1,0 +1,135 @@
+[
+    {
+        "id": 1,
+        "name": "Gaming Laptop",
+        "image": "images/gaming_laptop.jpg",
+        "category": "Computers",
+        "price": 1500,
+        "details": "High-performance laptop with the latest graphics card.",
+        "Specification": ["16GB RAM", "1TB SSD", "NVIDIA GTX 3060"],
+        "availability": true,
+        "rating": 4.8
+    },
+    {
+        "id": 2,
+        "name": "Ultrabook",
+        "image": "images/ultrabook.jpg",
+        "category": "Computers",
+        "price": 1200,
+        "details": "Slim and lightweight laptop for professionals.",
+        "Specification": ["8GB RAM", "512GB SSD", "Intel i5 Processor"],
+        "availability": true,
+        "rating": 4.5
+    },
+    {
+        "id": 3,
+        "name": "Desktop PC",
+        "image": "images/desktop_pc.jpg",
+        "category": "Computers",
+        "price": 900,
+        "details": "Powerful desktop with customizable components.",
+        "Specification": ["16GB RAM", "1TB HDD", "Intel i7 Processor"],
+        "availability": true,
+        "rating": 4.3
+    },
+    {
+        "id": 4,
+        "name": "All-in-One PC",
+        "image": "images/all_in_one_pc.jpg",
+        "category": "Computers",
+        "price": 800,
+        "details": "Compact desktop with integrated monitor.",
+        "Specification": ["8GB RAM", "256GB SSD", "Intel i3 Processor"],
+        "availability": false,
+        "rating": 4.0
+    },
+    {
+        "id": 5,
+        "name": "Chromebook",
+        "image": "images/chromebook.jpg",
+        "category": "Computers",
+        "price": 350,
+        "details": "Affordable laptop for browsing and basic tasks.",
+        "Specification": ["4GB RAM", "64GB eMMC", "Chrome OS"],
+        "availability": true,
+        "rating": 3.8
+    },
+    {
+        "id": 6,
+        "name": "Workstation",
+        "image": "images/workstation.jpg",
+        "category": "Computers",
+        "price": 2000,
+        "details": "High-end workstation for intensive tasks.",
+        "Specification": ["32GB RAM", "2TB SSD", "Quadro RTX 5000"],
+        "availability": true,
+        "rating": 4.9
+    },
+    {
+        "id": 7,
+        "name": "Smartphone Pro",
+        "image": "images/smartphone_pro.jpg",
+        "category": "Phones",
+        "price": 999,
+        "details": "Latest smartphone with advanced features.",
+        "Specification": ["128GB Storage", "5G", "Triple Camera"],
+        "availability": true,
+        "rating": 4.7
+    },
+    {
+        "id": 8,
+        "name": "Budget Smartphone",
+        "image": "images/budget_smartphone.jpg",
+        "category": "Phones",
+        "price": 250,
+        "details": "Affordable smartphone with essential features.",
+        "Specification": ["64GB Storage", "4G", "Dual Camera"],
+        "availability": true,
+        "rating": 4.0
+    },
+    {
+        "id": 9,
+        "name": "Fitness Smartwatch",
+        "image": "images/fitness_smartwatch.jpg",
+        "category": "SmartWatches",
+        "price": 150,
+        "details": "Smartwatch with fitness tracking features.",
+        "Specification": ["Heart Rate Monitor", "GPS", "Water Resistant"],
+        "availability": true,
+        "rating": 4.2
+    },
+    {
+        "id": 10,
+        "name": "Luxury Smartwatch",
+        "image": "images/luxury_smartwatch.jpg",
+        "category": "SmartWatches",
+        "price": 500,
+        "details": "Stylish smartwatch with premium materials.",
+        "Specification": ["Stainless Steel", "AMOLED Display", "GPS"],
+        "availability": false,
+        "rating": 4.6
+    },
+    {
+        "id": 11,
+        "name": "Fast Charger",
+        "image": "images/fast_charger.jpg",
+        "category": "Chargers",
+        "price": 75,
+        "details": "Quickly charges compatible devices.",
+        "Specification": ["20W Output", "USB-C", "Compact Design"],
+        "availability": true,
+        "rating": 4.1
+    },
+    {
+        "id": 12,
+        "name": "Wireless Charger",
+        "image": "images/wireless_charger.jpg",
+        "category": "Chargers",
+        "price": 100,
+        "details": "Conveniently charges without cables.",
+        "Specification": ["Qi Compatible", "10W Output", "LED Indicator"],
+        "availability": true,
+        "rating": 4.3
+    }
+    
+]

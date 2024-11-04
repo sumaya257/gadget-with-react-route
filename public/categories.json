@@ -1,0 +1,101 @@
+[
+    {
+      "id": 1,
+      "name": "Gaming Laptop",
+      "image": "images/gaming_laptop.jpg",
+      "category": "Computers",
+      "price": 1500,
+      "details": "High-performance laptop with latest graphics card."
+    },
+    {
+      "id": 2,
+      "name": "Ultrabook",
+      "image": "images/ultrabook.jpg",
+      "category": "Computers",
+      "price": 1200,
+      "details": "Slim and lightweight laptop for professionals."
+    },
+    {
+      "id": 3,
+      "name": "Desktop PC",
+      "image": "images/desktop_pc.jpg",
+      "category": "Computers",
+      "price": 900,
+      "details": "Powerful desktop with customizable components."
+    },
+    {
+      "id": 4,
+      "name": "All-in-One PC",
+      "image": "images/all_in_one_pc.jpg",
+      "category": "Computers",
+      "price": 800,
+      "details": "Compact desktop with integrated monitor."
+    },
+    {
+      "id": 5,
+      "name": "Chromebook",
+      "image": "images/chromebook.jpg",
+      "category": "Computers",
+      "price": 350,
+      "details": "Affordable laptop for browsing and basic tasks."
+    },
+    {
+      "id": 6,
+      "name": "Workstation",
+      "image": "images/workstation.jpg",
+      "category": "Computers",
+      "price": 2000,
+      "details": "High-end workstation for intensive tasks."
+    },
+    {
+      "id": 7,
+      "name": "Smartphone Pro",
+      "image": "images/smartphone_pro.jpg",
+      "category": "Phones",
+      "price": 999,
+      "details": "Latest smartphone with advanced features."
+    },
+    {
+      "id": 8,
+      "name": "Budget Smartphone",
+      "image": "images/budget_smartphone.jpg",
+      "category": "Phones",
+      "price": 250,
+      "details": "Affordable smartphone with essential features."
+    },
+    {
+      "id": 9,
+      "name": "Fitness Smartwatch",
+      "image": "images/fitness_smartwatch.jpg",
+      "category": "SmartWatches",
+      "price": 150,
+      "details": "Smartwatch with fitness tracking features."
+    },
+    {
+      "id": 10,
+      "name": "Luxury Smartwatch",
+      "image": "images/luxury_smartwatch.jpg",
+      "category": "SmartWatches",
+      "price": 500,
+      "details": "Stylish smartwatch with premium materials."
+    },
+    {
+      "id": 11,
+      "name": "Fast Charger",
+      "image": "images/fast_charger.jpg",
+      "category": "Chargers",
+      "price": 75,
+      "details": "Quickly charges compatible devices."
+    },
+    {
+      "id": 12,
+      "name": "Wireless Charger",
+      "image": "images/wireless_charger.jpg",
+      "category": "Chargers",
+      "price": 100,
+      "details": "Conveniently charges without cables."
+    }
+
+
+  ]
+  
