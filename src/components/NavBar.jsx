@@ -8,7 +8,7 @@ const NavBar = () => {
     const isHomePage = location.pathname === '/';
 
     return (
-        <div className={`navbar container mx-auto ${isHomePage ? 'bg-[#9538E2] text-white' : 'bg-white text-gray-600'}`}>
+        <div className={`navbar container mx-auto fixed z-20 backdrop-blur-xl ${isHomePage ? 'bg-[#9538E2] text-white' : 'bg-white text-gray-600'}`}>
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

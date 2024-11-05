@@ -7,6 +7,7 @@ import Dashboard from '../pages/Dashboard';
 import Cart from '../pages/Cart';
 import Favorites from '../pages/Favorites'
 import Cards from '../components/Cards';
+import CardDetails from '../components/CardDetails';
 
 const routes = createBrowserRouter([
     {
@@ -28,6 +29,12 @@ const routes = createBrowserRouter([
                 loader:()=>fetch('../products.json'),
               },
             ],
+        },
+
+        {
+            path:'/cardDetails/:id',
+            element:<CardDetails></CardDetails>,
+            loader:()=>fetch('../products.json'),
         },
 
         {
