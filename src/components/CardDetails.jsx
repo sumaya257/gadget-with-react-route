@@ -3,6 +3,7 @@ import Heading from './Heading';
 import { useLoaderData, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faHeart } from "@fortawesome/free-solid-svg-icons";
+import { addToStoredCartList } from '../utilities/addToDb';
 
 const CardDetails = () => {
     const { id } = useParams();  // Destructure the id from params
@@ -17,6 +18,9 @@ const CardDetails = () => {
     const { name, image, price, details, Specification, availability, rating } = card
 
     // add to cart btn with local storage
+    const handleAddToCartBtn=(id)=>{
+        addToStoredCartList(id)
+    }
 
     return (
         <div>
@@ -48,17 +52,17 @@ const CardDetails = () => {
                         {`Rating: ${rating}`}
                     </div>
 
-                    <div className='flex gap-5'>
-                        <div className='btn bg-[rgb(149,56,226)]'>
-                        <div className='flex gap-2 items-center'>
-                        <div className='text-white'>Add To Cart</div>
-                        <FontAwesomeIcon icon={faShoppingCart} className="text-white/50" size="lg" />
-                        </div>
-                        </div>
-                        <div className='btn'>
-                        <button> <FontAwesomeIcon icon={faHeart} className="text-gray-500" size="lg" /> </button>
-                        </div>
+
+                     <div className='flex gap-4'>
+                        <button onClick={()=> handleAddToCartBtn(id)} className='bg-[rgb(149,56,226)] btn'>
+                            <div className='flex items-center gap-2'>
+                            <div className='text-white'>Add To Cart</div>
+                             <FontAwesomeIcon icon={faShoppingCart} className="text-white/50" size="lg" /> 
+                             </div>
+                        </button>
+                        <button className='border-2 p-3 rounded-full'><FontAwesomeIcon icon={faHeart} className="text-gray-500" size="lg" /></button>
                     </div>
+
                 </div>
             </div>
         </div>
