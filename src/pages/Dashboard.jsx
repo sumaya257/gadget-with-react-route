@@ -5,12 +5,14 @@ import 'react-tabs/style/react-tabs.css';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import { getStoredCartList, getStoredWishlist, updateStoredCart, updateStoredWishlist } from '../utilities/addToDb';
 import Card from '../components/Card';
-import Modal from 'react-modal'; // Import Modal library (install it with `npm install react-modal` if you haven't already)
+import Modal from 'react-modal';
+import { Helmet } from 'react-helmet';
 
 // Configure Modal
 Modal.setAppElement('#root');
 
 const Dashboard = () => {
+
     const [activeTab, setActiveTab] = useState(0);
     const [cartList, setCartList] = useState([]);
     const [wishList, setWishList] = useState([]);
@@ -81,6 +83,10 @@ const Dashboard = () => {
 
     return (
         <div>
+            <Helmet>
+                {/* Set the favicon */}
+                <title>DashBoard || Gadget</title>
+            </Helmet>
             {/* Heading with Tabs for buttons */}
             <Heading title="Dashboard" subtitle="Explore the latest gadgets...">
                 <Tabs selectedIndex={activeTab} onSelect={(index) => setActiveTab(index)}>

@@ -2,6 +2,7 @@ import React from 'react';
 import Banner from '../components/Banner';
 import Categories from '../components/Categories';
 import { Outlet, useLoaderData } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 
 const Home = () => {
@@ -9,6 +10,10 @@ const Home = () => {
     console.log(categories)
     return (
         <div>
+            <Helmet>
+                <title>Home || Gadget</title>
+            </Helmet>
+
             <Banner></Banner>
 
             {/* categories section */}

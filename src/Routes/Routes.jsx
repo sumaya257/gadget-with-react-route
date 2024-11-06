@@ -6,11 +6,14 @@ import Statistics from '../pages/Statistics';
 import Dashboard from '../pages/Dashboard';
 import Cards from '../components/Cards';
 import CardDetails from '../components/CardDetails';
+import ErrorPage from '../pages/ErrorPage';
+import Review from '../pages/Review';
 
 const routes = createBrowserRouter([
     {
         path: '/',
-        element: <MainLayout></MainLayout>,
+        element:<MainLayout></MainLayout>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [{
             path: '/',
             element: <Home></Home>,
@@ -45,6 +48,11 @@ const routes = createBrowserRouter([
             element:<Dashboard></Dashboard>,
             loader:()=>fetch('../products.json'),
         },
+
+        {
+            path:'/review',
+            element:<Review></Review>,
+        }
         ]
     },
 

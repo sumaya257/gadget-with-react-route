@@ -114,6 +114,11 @@ const NavBar = () => {
                     >
                         Dashboard
                     </NavLink>
+                    <NavLink to='/review' className={({ isActive }) =>
+                            isActive
+                                ? "text-[#9538E2]"
+                                : isHomePage ? "text-white" : "text-gray-600"
+                        }>Review</NavLink>
                 </ul>
             </div>
             <div className="navbar-end flex space-x-2">
@@ -144,6 +149,9 @@ const NavBar = () => {
                         </span>
                     )}
                 </NavLink>
+
+                
+
             </div>
         </div>
     );
