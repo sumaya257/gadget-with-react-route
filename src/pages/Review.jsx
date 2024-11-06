@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 
 // Sample review data
 const reviews = [
@@ -51,6 +52,10 @@ const ReviewItem = ({ title, user, rating, text, fbLink }) => (
 const Review = () => {
     return (
         <div>
+             <Helmet>
+                {/* Set the favicon */}
+                <title>Review || Gadget</title>
+            </Helmet>
             <h2 className="text-center font-bold text-2xl mb-4">Customer Reviews</h2>
             {reviews.map((review, index) => (
                 <ReviewItem
