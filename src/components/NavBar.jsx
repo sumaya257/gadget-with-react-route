@@ -50,7 +50,7 @@ const NavBar = () => {
                         <NavLink
                             to='/'
                             className={({ isActive }) =>
-                                isActive ? "text-white" : isHomePage ? "text-white" : "text-gray-600"
+                                isActive ? "text-white bg-[#9538E2]" : isHomePage ? "text-white" : "text-gray-600"
                             }
                         >
                             Home
@@ -118,7 +118,7 @@ const NavBar = () => {
             </div>
             <div className="navbar-end flex space-x-2">
                 <NavLink
-                    to="/cart"
+                    to="/dashboard"
                     className={({ isActive }) =>
                         `relative rounded-full p-2 ${isActive ? 'bg-[rgb(149,56,226)]' : 'bg-white'}`
                     }
@@ -132,7 +132,7 @@ const NavBar = () => {
                 </NavLink>
 
                 <NavLink
-                    to="/favorites"
+                    to="/dashboard"
                     className={({ isActive }) =>
                         `relative rounded-full p-2 ${isActive ? 'bg-[rgb(149,56,226)]' : 'bg-white'}`
                     }

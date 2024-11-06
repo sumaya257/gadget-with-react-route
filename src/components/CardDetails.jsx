@@ -51,8 +51,8 @@ const CardDetails = () => {
             <div className="card lg:card-side bg-base-100 shadow-xl gap-4 w-9/12 mx-auto relative mt-[-100px]">
                 <figure>
                 <img
-                        src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.webp"
-                        alt="Album" />
+                        src={image}
+                        alt="Album" className='h-[420px] w-[500px]' />
                 </figure>
                 <div className="card-body">
                     <h2 className="card-title text-3xl">{name}</h2>

@@ -4,8 +4,6 @@ import MainLayout from '../layouts/MainLayout';
 import Home from '../pages/Home';
 import Statistics from '../pages/Statistics';
 import Dashboard from '../pages/Dashboard';
-import Cart from '../pages/Cart';
-import Favorites from '../pages/Favorites'
 import Cards from '../components/Cards';
 import CardDetails from '../components/CardDetails';
 
@@ -47,16 +45,6 @@ const routes = createBrowserRouter([
             element:<Dashboard></Dashboard>,
             loader:()=>fetch('../products.json'),
         },
-
-        {
-            path:'/cart',
-            element:<Cart></Cart>,
-        },
-
-        {
-            path:'/favorites',
-            element:<Favorites></Favorites>
-        }
         ]
     },
 

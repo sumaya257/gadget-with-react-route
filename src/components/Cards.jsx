@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
-import Card from './card';
+import Card from './Card';
+
 
 const Cards = () => {
     const data = useLoaderData()
