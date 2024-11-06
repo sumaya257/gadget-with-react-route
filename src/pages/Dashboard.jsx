@@ -1,27 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import Heading from '../components/Heading';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { Tab, Tabs, TabList } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import { useLoaderData } from 'react-router-dom';
-import { getStoredCartList, getStoredWishlist, addToStoredCartList, addToStoredWishlist } from '../utilities/addToDb';
+import { useLoaderData, useNavigate } from 'react-router-dom';
+import { getStoredCartList, getStoredWishlist, updateStoredCart, updateStoredWishlist } from '../utilities/addToDb';
 import Card from '../components/Card';
+import Modal from 'react-modal'; // Import Modal library (install it with `npm install react-modal` if you haven't already)
 
-// Helper function to update the cart in localStorage
-const updateStoredCart = (cartList) => {
-    const cartListStr = JSON.stringify(cartList);
-    localStorage.setItem('cart-list', cartListStr);
-};
-
-// Helper function to update the wishlist in localStorage
-const updateStoredWishlist = (wishlist) => {
-    const wishlistStr = JSON.stringify(wishlist);
-    localStorage.setItem('wishlist', wishlistStr);
-};
+// Configure Modal
+Modal.setAppElement('#root');
 
 const Dashboard = () => {
     const [activeTab, setActiveTab] = useState(0);
     const [cartList, setCartList] = useState([]);
     const [wishList, setWishList] = useState([]);
+    const [totalCost, setTotalCost] = useState(0);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const navigate = useNavigate();
     const allData = useLoaderData();
 
     // Load Cart
@@ -40,32 +35,48 @@ const Dashboard = () => {
         setWishList(wishedAllList);
     }, [allData]);
 
+    // Calculate total cost of cart items whenever cartList changes
+    useEffect(() => {
+        const cost = cartList.reduce((acc, item) => acc + item.price, 0);
+        setTotalCost(cost);
+    }, [cartList]);
+
+    // Sort cart items by price in descending order
+    const handleSortByPrice = () => {
+        const sortedCartList = [...cartList].sort((a, b) => b.price - a.price);
+        setCartList(sortedCartList);
+    };
+
+    // Clear cart on purchase and open modal
+    const handlePurchase = () => {
+        setCartList([]); // Clear cart
+        updateStoredCart([]); // Clear cart in localStorage
+        setTotalCost(0); // Reset total cost
+        setIsModalOpen(true); // Open modal to congratulate
+    };
+
     // Delete item from cart and localStorage
     const handleDeleteFromCart = (id) => {
-        // Remove the item from the state (cartList)
         const updatedCartList = cartList.filter(item => item.id !== id);
         setCartList(updatedCartList);
-
-        // Get the current cart from localStorage and filter out the deleted item
         const storedCart = getStoredCartList();
         const updatedStoredCart = storedCart.filter(itemId => parseInt(itemId) !== id);
-
-        // Update the localStorage with the new cart (after deletion)
         updateStoredCart(updatedStoredCart);
     };
 
     // Delete item from wishlist and localStorage
     const handleDeleteFromWishlist = (id) => {
-        // Remove the item from the state (wishList)
         const updatedWishList = wishList.filter(item => item.id !== id);
         setWishList(updatedWishList);
-
-        // Get the current wishlist from localStorage and filter out the deleted item
         const storedWishlist = getStoredWishlist();
         const updatedStoredWishlist = storedWishlist.filter(itemId => parseInt(itemId) !== id);
-
-        // Update the localStorage with the new wishlist (after deletion)
         updateStoredWishlist(updatedStoredWishlist);
+    };
+
+    // Close modal and navigate to home
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+        navigate('/'); // Redirect to home page
     };
 
     return (
@@ -94,11 +105,19 @@ const Dashboard = () => {
             <div className="mt-6 text-center">
                 {activeTab === 0 && (
                     <div>
-                        <h2 className='font-bold'>Cart || Length: {cartList.length}</h2>
+                        <h2 className='font-bold mb-5'>Cart || Length: {cartList.length}</h2>
+                        <button className='btn mr-4'>{`Total Cost: $${totalCost}`}</button>
+                        <button onClick={handleSortByPrice} className='btn mr-4 text-[#9538E2] bg-white'>Sort By Price</button>
+                        <button
+                            onClick={handlePurchase}
+                            className='btn bg-[#9538E2] text-white'
+                            disabled={cartList.length === 0 || totalCost === 0} // Disable condition
+                        >
+                            Purchase
+                        </button>
                         {cartList.map(product => (
                             <div key={product.id} className="my-4 gap-[800px] flex items-center">
                                 <Card product={product} />
-                                {/* Centered delete button using flex */}
                                 <button
                                     onClick={() => handleDeleteFromCart(product.id)}
                                     className="bg-red-500 text-white py-2 px-4 rounded-full mt-2"
@@ -115,7 +134,6 @@ const Dashboard = () => {
                         {wishList.map(product => (
                             <div key={product.id} className="my-4 gap-[800px] flex items-center">
                                 <Card product={product} />
-                                {/* Centered delete button using flex */}
                                 <button
                                     onClick={() => handleDeleteFromWishlist(product.id)}
                                     className="bg-red-500 text-white py-2 px-4 rounded-full mt-2"
@@ -127,6 +145,22 @@ const Dashboard = () => {
                     </div>
                 )}
             </div>
+
+            {/* Purchase Confirmation Modal */}
+            <Modal
+                isOpen={isModalOpen}
+                onRequestClose={handleCloseModal}
+                contentLabel="Purchase Confirmation"
+                className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full mx-auto transform -translate-y-1/2 -translate-x-1/2 top-1/2 left-1/2 absolute"
+                overlayClassName="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
+            >
+                <h2 className="text-2xl font-bold mb-4">Congratulations on Your Purchase!</h2>
+                <p className="text-gray-600">Your cart has been cleared, and your items will be on the way soon!</p>
+                <button onClick={handleCloseModal} className="btn bg-green-500 text-white mt-4 px-4 py-2 rounded">
+                    Close
+                </button>
+            </Modal>
+
         </div>
     );
 };
