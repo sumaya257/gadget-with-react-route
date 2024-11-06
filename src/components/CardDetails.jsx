@@ -1,26 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Heading from './Heading';
 import { useLoaderData, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faHeart } from "@fortawesome/free-solid-svg-icons";
-import { addToStoredCartList } from '../utilities/addToDb';
+import { addToStoredCartList, addToStoredWishlist, getStoredWishlist } from '../utilities/addToDb'; // Adjust this import according to your file structure
+import StarRatings from 'react-star-ratings'; // Import the star ratings component
 
 const CardDetails = () => {
     const { id } = useParams();  // Destructure the id from params
-    console.log(id);  // Log the id
+    const data = useLoaderData();
+    const ID = parseInt(id);
+    const card = data.find(card => card.id === ID);
+    const { name, image, price, details, Specification, availability, rating } = card;
 
-    const data = useLoaderData()
-    console.log(data)
-    const ID = parseInt(id)
+    // State to manage wishlist status
+    const [isWished, setIsWished] = useState(false);
 
-    const card = data.find(card => card.id === ID)
-    console.log(card)
-    const { name, image, price, details, Specification, availability, rating } = card
+    // Check if the item is already in the wishlist when the component mounts
+    useEffect(() => {
+        const wishlist = getStoredWishlist();
+        if (wishlist.includes(id)) {
+            setIsWished(true); // Set to true if item is already wished
+        }
+    }, [id]);
 
-    // add to cart btn with local storage
-    const handleAddToCartBtn=(id)=>{
-        addToStoredCartList(id)
-    }
+    // Add to cart button handler
+    const handleAddToCartBtn = (id) => {
+        addToStoredCartList(id);
+    };
+
+    // Add to wishlist button handler
+    const handleAddToWishlistBtn = () => {
+        if (!isWished) { // Only add if not already wished
+            if (addToStoredWishlist(id)) {
+                setIsWished(true); // Update state to reflect that item has been wished
+            }
+        }
+    };
 
     return (
         <div>
@@ -28,10 +44,9 @@ const CardDetails = () => {
                 title="Product Details"
                 subtitle="Explore the latest gadgets that will take your experience to the next level. From smart devices to the coolest accessories, we have it all!"
             />
-            {/* using the id here to fetch product details or display them */}
-            <div className="card lg:card-side bg-base-100 shadow-xl gap-4 w-9/12 mx-auto  relative mt-[-100px]">
+            <div className="card lg:card-side bg-base-100 shadow-xl gap-4 w-9/12 mx-auto relative mt-[-100px]">
                 <figure>
-                    <img
+                <img
                         src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.webp"
                         alt="Album" />
                 </figure>
@@ -49,20 +64,30 @@ const CardDetails = () => {
                         ))}
                     </div>
                     <div className='font-bold'>
-                        {`Rating: ${rating}`}
+                        <div className='flex items-center'>
+                            <span className='mr-2'>Rating:</span>
+                            <StarRatings
+                                rating={rating}
+                                starRatedColor="rgb(149, 56, 226)"
+                                numberOfStars={5}
+                                starDimension="20px"
+                                starSpacing="5px"
+                                name='rating'
+                                isSelectable={false} // Prevent interaction if you don't want to allow changing ratings
+                            />
+                        </div>
                     </div>
-
-
-                     <div className='flex gap-4'>
-                        <button onClick={()=> handleAddToCartBtn(id)} className='bg-[rgb(149,56,226)] btn'>
+                    <div className='flex gap-4'>
+                        <button onClick={() => handleAddToCartBtn(id)} className='bg-[rgb(149,56,226)] btn'>
                             <div className='flex items-center gap-2'>
-                            <div className='text-white'>Add To Cart</div>
-                             <FontAwesomeIcon icon={faShoppingCart} className="text-white/50" size="lg" /> 
-                             </div>
+                                <div className='text-white'>Add To Cart</div>
+                                <FontAwesomeIcon icon={faShoppingCart} className="text-white/50" size="lg" />
+                            </div>
                         </button>
-                        <button className='border-2 p-3 rounded-full'><FontAwesomeIcon icon={faHeart} className="text-gray-500" size="lg" /></button>
+                        <button onClick={handleAddToWishlistBtn} className='border-2 p-3 rounded-full' disabled={isWished}>
+                            <FontAwesomeIcon icon={isWished ? faHeart : faHeart} className={isWished ? "text-red-500" : "text-gray-500"} size="lg" />
+                        </button>
                     </div>
-
                 </div>
             </div>
         </div>

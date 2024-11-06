@@ -2,25 +2,29 @@ import React, { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faHeart } from "@fortawesome/free-solid-svg-icons";
-import { addToStoredCartList, getStoredCartList } from '../utilities/addToDb';
+import { addToStoredCartList, getStoredCartList,getStoredWishlist } from '../utilities/addToDb';
+
 
 const NavBar = () => {
     const location = useLocation();
     const isHomePage = location.pathname === '/';
 
-    //cart state declaration
-    const [cartCount,setCartCount] = useState(0)
-    //load the cart count from localstorage
-    useEffect(()=>{
-        const cartItems=getStoredCartList()
-        setCartCount(cartItems.length)
-    },[])
+    // Cart state declaration
+    const [cartCount, setCartCount] = useState(0);
+    // Wishlist state declaration
+    const [wishlistCount, setWishlistCount] = useState(0);
 
-    //function to add an item and update
-    const handleToCart=(id)=>{
-              addToStoredCartList(id)
-              setCartCount((prevCount)=>prevCount+1)
-    }
+    // Load the cart count from localStorage
+    useEffect(() => {
+        const cartItems = getStoredCartList();
+        setCartCount(cartItems.length);
+    }, []);
+
+    // Load the wishlist count from localStorage
+    useEffect(() => {
+        const wishlistItems = getStoredWishlist();
+        setWishlistCount(wishlistItems.length);
+    }, []);
 
     return (
         <div className={`navbar container mx-auto fixed z-20 backdrop-blur-xl ${isHomePage ? 'bg-[#9538E2] text-white' : 'bg-white text-gray-600'}`}>
@@ -113,31 +117,34 @@ const NavBar = () => {
                 </ul>
             </div>
             <div className="navbar-end flex space-x-2">
-            <NavLink
-    to="/cart"
-    className={({ isActive }) =>
-        `relative rounded-full p-2 ${isActive ? 'bg-[rgb(149,56,226)]' : 'bg-white'}`
-    }
->
-    <FontAwesomeIcon icon={faShoppingCart} className="text-gray-500" size="lg" />
-    {cartCount > 0 && (
-        <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-2">
-            {cartCount}
-        </span>
-    )}
-</NavLink>
-
+                <NavLink
+                    to="/cart"
+                    className={({ isActive }) =>
+                        `relative rounded-full p-2 ${isActive ? 'bg-[rgb(149,56,226)]' : 'bg-white'}`
+                    }
+                >
+                    <FontAwesomeIcon icon={faShoppingCart} className="text-gray-500" size="lg" />
+                    {cartCount > 0 && (
+                        <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-2">
+                            {cartCount}
+                        </span>
+                    )}
+                </NavLink>
 
                 <NavLink
                     to="/favorites"
                     className={({ isActive }) =>
-                        `rounded-full p-2 ${isActive ? 'bg-[rgb(149,56,226)]' : 'bg-white'}`
+                        `relative rounded-full p-2 ${isActive ? 'bg-[rgb(149,56,226)]' : 'bg-white'}`
                     }
                 >
                     <FontAwesomeIcon icon={faHeart} className="text-gray-500" size="lg" />
+                    {wishlistCount > 0 && (
+                        <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-2">
+                            {wishlistCount}
+                        </span>
+                    )}
                 </NavLink>
             </div>
-
         </div>
     );
 };
