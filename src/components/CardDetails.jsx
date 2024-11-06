@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { addToStoredCartList, addToStoredWishlist, getStoredWishlist } from '../utilities/addToDb'; // Adjust this import according to your file structure
 import StarRatings from 'react-star-ratings'; // Import the star ratings component
+import { toast } from 'react-toastify';
 
 const CardDetails = () => {
     const { id } = useParams();  // Destructure the id from params
@@ -27,16 +28,19 @@ const CardDetails = () => {
     // Add to cart button handler
     const handleAddToCartBtn = (id) => {
         addToStoredCartList(id);
+        toast.success('added to cart!');
     };
 
     // Add to wishlist button handler
     const handleAddToWishlistBtn = () => {
-        if (!isWished) { // Only add if not already wished
-            if (addToStoredWishlist(id)) {
-                setIsWished(true); // Update state to reflect that item has been wished
-            }
+        // Only add to wishlist if the item is not already wished (i.e., isWished is false)
+        if (!isWished && addToStoredWishlist(id)) {
+            setIsWished(true);  // Mark the item as wished after adding it to the wishlist
+            toast.success('added to WishList!');
+
         }
     };
+    
 
     return (
         <div>
