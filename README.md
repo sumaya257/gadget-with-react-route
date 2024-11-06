@@ -4,11 +4,10 @@ Welcome to the Gadget Heaven! This project is a responsive and interactive web a
 
 ## 📍 Live Website
 Visit the live project: [Gadget Heaven](https://gadget-heaven-using-react.netlify.app)  
-(Replace "#" with your actual link)
+
 
 ## 📄 Requirement Document
 View the complete requirements here: [Requirement Document](https://publuu.com/flip-book/708772/1576020)  
-(Replace "#" with your actual link)
 
 ## 📑 Table of Contents
 - [Project Overview](#project-overview)
